@@ -31,6 +31,8 @@ typedef struct	s_data1
     int             line_length;
     int             endian;
 
+    int             money_count;
+
 
     int             play_x;
     int             play_y;
@@ -60,6 +62,7 @@ typedef struct	s_data1
     void            *kirp_img;
     void            *back_img;
     int             step;
+//    char            *rem;
 
 //    t_orient        *walls;
 //    t_orient        *coll;
@@ -80,8 +83,8 @@ typedef struct	s_data
 
 void    image_for_map(t_vars *vars);
 void    record_to_map(t_vars *vars);
-
-
+void    map_start(char **argv, t_vars *vars);
+void    map_start2 (t_vars *vars);
 
 int     exit_win(void *ptr);
 void    free_arr(char **arr);
@@ -89,8 +92,6 @@ int     keyboard(int keycode, t_vars *vars);
 
 void    player_go_up(t_vars *vars, int tmp);
 void    draw_map (t_vars *vars);
-
-
 
 
 #endif

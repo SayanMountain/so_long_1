@@ -1,5 +1,61 @@
 #include "so_long.h"
 
+static void    check_key_w(t_vars *vars, int tmp)
+{
+    tmp = 0;
+    if (vars->map[vars->p_y - 1][vars->p_x] == '1')
+        return;
+    if (vars->map[vars->p_y - 1][vars->p_x] == 'E' && vars->money_count == 0)
+        exit(0);
+    if (vars->map[vars->p_y - 1][vars->p_x] == 'C')
+        vars->money_count--;
+    vars->map[vars->p_y - 1][vars->p_x] = 'P';
+    vars->map[vars->p_y][vars->p_x] = '0';
+    vars->p_y = vars->p_y - 1;
+}
+
+static void    check_key_a(t_vars *vars, int tmp)
+{
+    tmp = 0;
+    if(vars->map[vars->p_y][vars->p_x - 1] == '1')
+        return;
+    if(vars->map[vars->p_y][vars->p_x - 1] == 'E' && vars->money_count == 0)
+        exit(0);
+    if(vars->map[vars->p_y][vars->p_x - 1] == 'C')
+        vars->money_count--;
+    vars->map[vars->p_y][vars->p_x - 1] = 'P';
+    vars->map[vars->p_y][vars->p_x] = '0';
+    vars->p_x = vars->p_x - 1;
+}
+
+static void    check_key_s(t_vars *vars, int tmp)
+{
+    tmp = 0;
+    if(vars->map[vars->p_y + 1][vars->p_x] == '1')
+        return;
+    if(vars->map[vars->p_y + 1][vars->p_x] == 'E' && vars->money_count == 0)
+        exit(0);
+    if(vars->map[vars->p_y + 1][vars->p_x] == 'C')
+        vars->money_count--;
+    vars->map[vars->p_y + 1][vars->p_x] = 'P';
+    vars->map[vars->p_y][vars->p_x] = '0';
+    vars->p_y = vars->p_y + 1;
+}
+
+static void    check_key_d(t_vars *vars, int tmp)
+{
+    tmp = 0;
+    if(vars->map[vars->p_y][vars->p_x + 1] == '1')
+        return;
+    if(vars->map[vars->p_y][vars->p_x + 1] == 'E' && vars->money_count == 0)
+        exit(0);
+    if(vars->map[vars->p_y][vars->p_x + 1] == 'C')
+        vars->money_count--;
+    vars->map[vars->p_y][vars->p_x + 1] = 'P';
+    vars->map[vars->p_y][vars->p_x] = '0';
+    vars->p_x = vars->p_x + 1;
+}
+
 void    player_go(t_vars *vars, int tmp)
 {
     int position[2];
@@ -8,56 +64,13 @@ void    player_go(t_vars *vars, int tmp)
     position[1] = vars->play_y;
 
     if (tmp == 0) //// A
-    {
-        if(vars->map[vars->p_y][vars->p_x - 1] == '1')
-        {
-            return;
-        }
-        else
-        {
-            vars->map[vars->p_y][vars->p_x] = '0';
-            vars->map[vars->p_y][vars->p_x - 1] = 'P';
-            vars->p_x -= 1;
-        }
-    }
-
+        check_key_a(vars, tmp);
     if (tmp == 1) //// S
-    {
-        if(vars->map[vars->p_y + 1][vars->p_x] == '1')
-        {
-            return;
-        }
-        else
-        {
-            vars->map[vars->p_y][vars->p_x] = '0';
-            vars->map[vars->p_y + 1][vars->p_x] = 'P';
-            vars->p_y += 1;
-        }
-    }
-
+        check_key_s(vars, tmp);
     if (tmp == 2) //// D
-    {
-        if (vars->map[vars->p_y][vars->p_x + 1] == '1')
-            return;
-        else
-        {
-            vars->map[vars->p_y][vars->p_x] = '0';
-            vars->map[vars->p_y][vars->p_x + 1] = 'P';
-            vars->p_x = vars->p_x + 1;
-        }
-    }
-
+        check_key_d(vars, tmp);
     if (tmp == 13) //// W
-    {
-        if (vars->map[vars->p_y - 1][vars->p_x] == '1')
-            return;
-        else
-        {
-            vars->map[vars->p_y - 1][vars->p_x] = 'P';
-            vars->map[vars->p_y][vars->p_x] = 'O';
-            vars->p_y = vars->p_y - 1;
-        }
-    }
+        check_key_w(vars, tmp);
     draw_map(vars);
 //    vars->step++;
 //    tmp = 0;
@@ -65,8 +78,6 @@ void    player_go(t_vars *vars, int tmp)
 ////    ft_putnbr_fd(vars->step, 1);
 //    write(1, "\n", 1);
 }
-
-
 
 int keyboard (int keycode, t_vars *vars)
 {
