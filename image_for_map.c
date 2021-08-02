@@ -16,4 +16,5 @@ void image_for_map(t_vars *vars)
     vars->kirp_img = mlx_xpm_file_to_image(vars->mlx, "/Users/pjeffere/Desktop/so_long/kirp.xpm", &x, &y);
     vars->kust_img = mlx_xpm_file_to_image(vars->mlx, "/Users/pjeffere/Desktop/so_long/kust.xpm", &x, &y);
     vars->wall_img = mlx_xpm_file_to_image(vars->mlx, "/Users/pjeffere/Desktop/so_long/wall.xpm", &x, &y);
+    vars->wall_img = mlx_xpm_file_to_image(vars->mlx, "/Users/pjeffere/Desktop/so_long/wall.xpm", &x, &y);
 }

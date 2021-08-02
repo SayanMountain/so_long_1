@@ -4,6 +4,7 @@ SRCS		=	main.c 							\
 				hook.c 							\
 				support.c						\
 				klaviatura.c					\
+				map.c							\
 				GNL/get_next_line.c 			\
 				GNL/get_next_line_utils.c 		\
 				libft/ft_strlen.c 				\

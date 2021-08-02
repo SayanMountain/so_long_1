@@ -19,6 +19,10 @@
 
 typedef struct	s_data1
 {
+    int             *wall_y;
+    int             *wall_x;
+    int              count_w;
+
     void	        *mlx;
     void	        *wind;
     char            *addr;
@@ -84,6 +88,7 @@ void    free_arr(char **arr);
 int     keyboard(int keycode, t_vars *vars);
 
 void    player_go_up(t_vars *vars, int tmp);
+void    draw_map (t_vars *vars);
 
 
 
