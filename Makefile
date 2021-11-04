@@ -1,14 +1,19 @@
 NAME		= 	so_long
-SRCS		=	main.c 							\
+
+SRCS		=	so_long.c 						\
 				image_for_map.c 				\
-				hook.c 							\
 				support.c						\
+				support_copy.c					\
 				klaviatura.c					\
 				map.c							\
 				GNL/get_next_line.c 			\
 				GNL/get_next_line_utils.c 		\
-				libft/ft_strlen.c 				\
-
+				ft_itoa.c						\
+				ft_calloc.c						\
+				ft_memset.c						\
+				map_check_1.c					\
+				map_check_2.c					\
+				ft_strncmp.c
 
 HEADERS		= 	so_long.h
 OBJS		=	$(SRCS:.c=.o)
@@ -22,7 +27,7 @@ all: $(NAME)
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(HEADERS) $(OBJS)
-	$(CC) ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) ${OBJS} -Lmlx -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
 
 clean:
 	rm -f  $(OBJS)
